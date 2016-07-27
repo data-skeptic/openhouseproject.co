@@ -1,3 +1,9 @@
+---
+layout: default
+title: Sign Up
+permalink: /signup/
+---
+
 # Enter your details below to sign up for an API account
 
 <form action="http://api.openhouseproject.co/api/signup/">
