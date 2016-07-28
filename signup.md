@@ -1,10 +1,74 @@
 # Enter your details below to sign up for an API account
 
-<form action="http://api.openhouseproject.co/api/signup/">
-    <input type="text" id="username" hint="username" />
-    <input type="password" id="password" hint="Password" />
-    <input type="text" id="first_name" hint="First Name" />
-    <input type="text" id="last_name" hint="Last Name" />
-    <input type="email" id="email" hint="Email Address" />
-    <input type="submit">Submit</input>
-</form>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+
+<table>
+    <tr><td>Username:</td><td><input type="text" id="username" hint="username" /></td><td><div class='errField' id='usernameErr'></div></td></tr>
+    <tr><td>Password:</td><td><input type="password" id="password" hint="Password" /></td><td><div class='errField' id='passwordErr'></div></td></tr>
+    <tr><td>First name:</td><td><input type="text" id="first_name" hint="First Name" /></td><td><div class='errField' id='first_nameErr'></div></td></tr>
+    <tr><td>Last name:</td><td><input type="text" id="last_name" hint="Last Name" /></td><td><div class='errField' id='last_nameErr'></div></td></tr>
+    <tr><td>Email:</td><td><input type="email" id="email" hint="Email Address" /></td><td><div class='errField' id='emailErr'></div></td></tr>
+    <tr><td colspan=2 align=right><button id="btnSignUp">Signup</button></td></tr>
+</table>
+
+<div id='msg'></div>
+<div id='wait'></div>
+
+<script>
+function showWaiting(show=true) {
+	if (show) {
+		$("#wait").html("Wait...")
+		$("#wait").show()
+		$("#btnSignUp").prop("disabled",true)
+	}
+	else {
+		$("#wait").hide()
+		$("#btnSignUp").prop("disabled",false)
+	}
+}
+
+$(document).ready(function() {
+	$(btnSignUp).click(function() {
+		request = {
+			'username': $("#username").val()
+		,	'password': $("#password").val()
+		,	'first_name': $("#first_name").val()
+		,	'last_name': $("#last_name").val()
+		,	'email': $("#email").val()
+		}
+		showWaiting(true)
+		$("#msg").hide()
+		$(".errField").hide()
+		console.log(JSON.stringify(request))
+		$.ajax({
+			type: 'POST',
+			url: 'http://api.openhouseproject.co/api/signup/',
+			data: JSON.stringify(request),
+			contentType: "application/json",
+			success: function(data) {
+				console.log(data)
+				showWaiting(false)
+				$("#msg").html("Account created successfully!  Please check your email for a confirmation link.")
+				$("#msg").show()
+			},
+			error: function (request, status, error) {
+				console.log(request)
+				var errMsg = "Signup failed."
+				rt = request['responseText']
+				if (rt !== undefined) {
+					rt = JSON.parse(rt)
+					keys = Object.keys(rt)
+					$.each(keys, function(i, key) {
+						var elem = "#" + key + "Err"
+						$(elem).html(rt[key].toString())
+						$(elem).show()
+					})
+				}
+				showWaiting(false)
+				$("#msg").html(errMsg)
+				$("#msg").show()
+		    }
+		});
+	})
+});
+</script>
