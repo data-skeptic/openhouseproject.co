@@ -1,3 +1,9 @@
+---
+layout: default
+title: Sign Up
+permalink: /signup/
+---
+
 # Enter your details below to sign up for an API account
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
