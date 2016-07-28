@@ -14,7 +14,7 @@ permalink: /signup/
     <tr><td>First name:</td><td><input type="text" id="first_name" hint="First Name" /></td><td><div class='errField' id='first_nameErr'></div></td></tr>
     <tr><td>Last name:</td><td><input type="text" id="last_name" hint="Last Name" /></td><td><div class='errField' id='last_nameErr'></div></td></tr>
     <tr><td>Email:</td><td><input type="email" id="email" hint="Email Address" /></td><td><div class='errField' id='emailErr'></div></td></tr>
-    <tr><td colspan="2" align="right"><button id="btnSignUp">Signup</button></td></tr>
+    <tr><td></td><td><button id="btnSignUp">Signup</button></td></tr>
 </table>
 
 <div id='msg'></div>
