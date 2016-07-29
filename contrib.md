@@ -4,7 +4,7 @@ title: Contributing
 permalink: /contributing/
 ---
 
-## Contributing
+### Contributing
 Thank you for your interest in helping with the OpenHouse project!
 
 We intend for there to be opportunities for anyone interested in getting involved to do so regardless of their available time or technical background. Students and experts alike can contribute.
