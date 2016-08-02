@@ -22,10 +22,9 @@ You can get a free account by signing up using the form below.
 <div id='msg'></div>
 <div id='wait'></div>
 
-Already have an account?  Below are some examples of how to use it!
-
-* Test
-* Test
+Already have an account?  Check out this
+[Jupyter notebook](https://github.com/data-skeptic/api-connector/blob/master/python/Push%20and%20Fetch%20Data%20Example.ipynb)
+that shows how to interact with the API.
 
 <script>
 function showWaiting(show=true) {
