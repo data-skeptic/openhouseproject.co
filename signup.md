@@ -4,21 +4,27 @@ title: Sign Up
 permalink: /signup/
 ---
 
-# Enter your details below to sign up for an API account
+# Account creation
+
+Some requests to our API require an account.  While the API can also be called for some purposes without authenticating, we appreciate it if you create an account so we can better capture metadata about usage.
+
+You can get a free account by signing up using the form below.
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 
 <table>
     <tr><td>Username:</td><td><input type="text" id="username" hint="username" /></td><td><div class='errField' id='usernameErr'></div></td></tr>
     <tr><td>Password:</td><td><input type="password" id="password" hint="Password" /></td><td><div class='errField' id='passwordErr'></div></td></tr>
-    <tr><td>First name:</td><td><input type="text" id="first_name" hint="First Name" /></td><td><div class='errField' id='first_nameErr'></div></td></tr>
-    <tr><td>Last name:</td><td><input type="text" id="last_name" hint="Last Name" /></td><td><div class='errField' id='last_nameErr'></div></td></tr>
     <tr><td>Email:</td><td><input type="email" id="email" hint="Email Address" /></td><td><div class='errField' id='emailErr'></div></td></tr>
     <tr><td></td><td><button id="btnSignUp">Signup</button></td></tr>
 </table>
 
 <div id='msg'></div>
 <div id='wait'></div>
+
+Already have an account?  Check out this
+[Jupyter notebook](https://github.com/data-skeptic/api-connector/blob/master/python/Push%20and%20Fetch%20Data%20Example.ipynb)
+that shows how to interact with the API.
 
 <script>
 function showWaiting(show=true) {
