@@ -15,5 +15,8 @@ The first step is to drop by our Slack channel and introduce yourself! Tell us a
 Open tasks you can volunteer for can be found on our waffle.io boards for the 
 <a href="https://waffle.io/data-skeptic/home-data-api">API</a> and the
 <a href="https://waffle.io/data-skeptic/home-data-gallery">Interactive tool</a>.
+If you're not looking to contribute technical skills but still want to help out,
+check out our list of 
+<a href="https://trello.com/b/QPhASWc9/openhouse-non-technical-tasks">non-technical volunteer tasks</a>.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/cHoRn1UxEzk" frameborder="0" allowfullscreen></iframe>
