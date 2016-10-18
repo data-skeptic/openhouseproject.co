@@ -20,3 +20,24 @@ check out our list of
 <a href="https://trello.com/b/QPhASWc9/openhouse-non-technical-tasks">non-technical volunteer tasks</a>.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/cHoRn1UxEzk" frameborder="0" allowfullscreen></iframe>
+
+### Tell us about a page (testing!)
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<form action="https://5xwvsgjnqi.execute-api.us-east-1.amazonaws.com/prod/url" method="POST">
+  Email:<br>
+  <input type="text" name="email-input" value="test@oh.com">
+  <br>
+  URL:<br>
+  <input type="text" name="url-input" value="thedomain.com/asdf">
+  <br><br>
+  <input type="submit" value="Submit">
+</form>
+
+<p>If you click the "Submit" button, the form-data will be sent to a page called "action_page.php".</p>
+
+</body>
+</html>
