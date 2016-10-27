@@ -25,6 +25,14 @@ check out our list of
 
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script>
+$( document ).ready(function() {
+  $("#error").hide()
+  $("#waiting").hide()
+  $("#thanks").hide()
+})
+</script>
+
 
 <style>
 .box {
@@ -85,6 +93,9 @@ check out our list of
   }
 </script>
 
+
+
+
   <table>
     <tr>
       <td>Email:</td>
@@ -99,7 +110,7 @@ check out our list of
       <td><input type="checkbox" id="cb_notify" checked />Notify me about updates related to this data
     </tr>
     <tr>
-      <td colspan="2" align="right"><button id="btnSubmit" onclick="submit(this)">Submit</button></td>
+      <td colspan="2" align="right"><button id="btnSubmit" onclick="submit()">Submit</button></td>
     </tr>
   </table>
 
@@ -107,12 +118,4 @@ check out our list of
   <div class="alertbox" id="waiting">Submitting...</div>
   <div class="alertbox" id="thanks">Thanks</div>
 
-  <script>
-    $( document ).ready(function() {
-      $("#error").hide()
-      $("#waiting").hide()
-      $("#thanks").hide()
-    })
-  </script>
-  
 
