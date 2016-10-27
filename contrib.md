@@ -67,6 +67,14 @@ $( document ).ready(function() {
 #btnSubmit {
   padding: 10px;
 }
+.urlbox {
+  margin-top: 5px;
+  padding: 5px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #444;
+  border-radius: 4px;
+}
 .alertbox {
   width: 325px;
   margin-top: 10px;
@@ -90,7 +98,7 @@ $( document ).ready(function() {
 
 
 
-<div class="alertbox">
+<div id="urlbox">
 
   ### Tell us about a website
 
