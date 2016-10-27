@@ -116,7 +116,8 @@ $( document ).ready(function() {
       <td><input type="checkbox" id="cb_notify" checked />Notify me about updates related to this data</td>
     </tr>
     <tr>
-      <td colspan="2" align="right">
+      <td></td>
+      <td align="right">
       	<button id="btnSubmit" onclick="submit()">Submit</button>
       </td>
     </tr>
