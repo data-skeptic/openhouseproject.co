@@ -19,13 +19,41 @@ If you're not looking to contribute technical skills but still want to help out,
 check out our list of 
 <a href="https://trello.com/b/QPhASWc9/openhouse-non-technical-tasks">non-technical volunteer tasks</a>.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/cHoRn1UxEzk" frameborder="0" allowfullscreen></iframe>
 
 ### Tell us about a website
 
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 <script>
+  function submit() {
+    var api = "https://5xwvsgjnqi.execute-api.us-east-1.amazonaws.com/prod/OH-submit-url"
+    var email = $("#email").val()
+    var url = $("#url").val()
+    var c = $("#cb_notify").attr('checked')
+    var checked = true
+    if (c == undefined) {
+      checked = false
+    }
+    var res = {"email": email, "url": url, "checked": checked}
+    $("#error").hide() 
+    $("#thanks").hide()
+    $("#waiting").show()
+    $.ajax({
+      url: api,
+      type: 'POST',
+      contentType: 'text/json',
+      dataType: 'json',
+      success: function (resp) {
+        $("#waiting").hide()
+        $("#thanks").hide()
+      },
+      error: function (xhr, ajaxOptions, thrownError) {
+        $("#error").show()
+        $("#waiting").hide()
+      }
+    })
+  }
+
 $( document ).ready(function() {
   $("#error").hide()
   $("#waiting").hide()
@@ -62,36 +90,6 @@ $( document ).ready(function() {
 }
 </style>
 
-<script>
-  function submit() {
-    var api = "https://5xwvsgjnqi.execute-api.us-east-1.amazonaws.com/prod/OH-submit-url"
-    var email = $("#email").val()
-    var url = $("#url").val()
-    var c = $("#cb_notify").attr('checked')
-    var checked = true
-    if (c == undefined) {
-      checked = false
-    }
-    var res = {"email": email, "url": url, "checked": checked}
-    $("#error").hide() 
-    $("#thanks").hide()
-    $("#waiting").show()
-    $.ajax({
-      url: api,
-      type: 'POST',
-      contentType: 'text/json',
-      dataType: 'json',
-      success: function (resp) {
-        $("#waiting").hide()
-        $("#thanks").hide()
-      },
-      error: function (xhr, ajaxOptions, thrownError) {
-        $("#error").show()
-        $("#waiting").hide()
-      }
-    })
-  }
-</script>
 
 
 
@@ -120,4 +118,7 @@ $( document ).ready(function() {
   <div class="alertbox" id="waiting">Submitting...</div>
   <div class="alertbox" id="thanks">Thanks</div>
 
+
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/cHoRn1UxEzk" frameborder="0" allowfullscreen></iframe>
 
