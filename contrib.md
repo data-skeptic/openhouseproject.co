@@ -72,8 +72,8 @@ $( document ).ready(function() {
   margin-bottom: 10px;
   padding: 5px;
   border-style: solid;
-  border-width: 2px;
-  border-color: #444;
+  border-width: 1px;
+  border-color: #999;
   border-radius: 4px;
 }
 .alertbox {
@@ -99,8 +99,8 @@ $( document ).ready(function() {
 
 
 
-### Tell us about a website
 <div id="urlbox">
+ <h3>Tell us about a website</h3>
 
   <table>
     <tr>
