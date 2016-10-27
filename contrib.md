@@ -107,10 +107,12 @@ $( document ).ready(function() {
     </tr>
     <tr>
       <td></td>
-      <td><input type="checkbox" id="cb_notify" checked />Notify me about updates related to this data
+      <td><input type="checkbox" id="cb_notify" checked />Notify me about updates related to this data</td>
     </tr>
     <tr>
-      <td colspan="2" align="right"><button id="btnSubmit" onclick="submit()">Submit</button></td>
+      <td colspan="2" align="right">
+      	<button id="btnSubmit" onclick="submit()">Submit</button>
+      </td>
     </tr>
   </table>
 
