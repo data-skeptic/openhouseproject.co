@@ -41,7 +41,7 @@ check out our list of
       type: 'POST',
       contentType: 'text/json',
       dataType: 'json',
-      data: res,
+      data: JSON.stringify(res),
       success: function (resp) {
         $("#waiting").hide()
         $("#thanks").show()
