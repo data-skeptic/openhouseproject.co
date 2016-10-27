@@ -43,7 +43,7 @@ check out our list of
       dataType: 'json',
       success: function (resp) {
         $("#waiting").hide()
-        $("#thanks").hide()
+        $("#thanks").show()
       },
       error: function (xhr, ajaxOptions, thrownError) {
         $("#error").show()
