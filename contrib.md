@@ -100,7 +100,7 @@ $( document ).ready(function() {
 
 <div id="urlbox">
 
-  ### Tell us about a website
+### Tell us about a website
 
   <table>
     <tr>
