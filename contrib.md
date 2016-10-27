@@ -20,8 +20,6 @@ check out our list of
 <a href="https://trello.com/b/QPhASWc9/openhouse-non-technical-tasks">non-technical volunteer tasks</a>.
 
 
-### Tell us about a website
-
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 <script>
@@ -92,7 +90,9 @@ $( document ).ready(function() {
 
 
 
+<div class="alertbox">
 
+  ### Tell us about a website
 
   <table>
     <tr>
@@ -118,6 +118,7 @@ $( document ).ready(function() {
   <div class="alertbox" id="waiting">Submitting...</div>
   <div class="alertbox" id="thanks">Thanks</div>
 
+</div>
 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/cHoRn1UxEzk" frameborder="0" allowfullscreen></iframe>
