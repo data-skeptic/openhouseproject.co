@@ -69,6 +69,7 @@ $( document ).ready(function() {
 }
 #urlbox {
   margin-top: 5px;
+  margin-bottom: 10px;
   padding: 5px;
   border-style: solid;
   border-width: 2px;
@@ -98,9 +99,8 @@ $( document ).ready(function() {
 
 
 
-<div id="urlbox">
-
 ### Tell us about a website
+<div id="urlbox">
 
   <table>
     <tr>
