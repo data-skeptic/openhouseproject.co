@@ -67,7 +67,7 @@ $( document ).ready(function() {
 #btnSubmit {
   padding: 10px;
 }
-.urlbox {
+#urlbox {
   margin-top: 5px;
   padding: 5px;
   border-style: solid;
