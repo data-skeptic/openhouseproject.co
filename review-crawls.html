@@ -1,5 +1,102 @@
 <html>
 <body>
+	<style type="text/css">
+	body {
+		font-family: sans-serif;
+		font-weight: normal;
+		margin: 10px;
+		color: #999;
+		background-color: #eee;
+	}
+
+	form {
+		margin: 2px 0;
+		display: inline;
+	}
+
+	div {
+		clear: both;
+		margin: 0 1px;
+	}
+
+	label {
+	  width: 700px;
+	  height: 40px;
+	  border-radius: 3px;
+	  border: 1px solid #D1D3D4
+	}
+
+	/* hide input */
+	input.radio:empty {
+		margin-left: -999px;
+	}
+
+	/* style label */
+	input.radio:empty ~ label {
+		position: relative;
+		float: left;
+		line-height: 2.5em;
+		text-indent: 3.25em;
+		margin-top: 2em;
+		cursor: pointer;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
+
+	input.radio:empty ~ label:before {
+		position: absolute;
+		display: block;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		content: '';
+		width: 2.5em;
+		background: #D1D3D4;
+		border-radius: 3px 0 0 3px;
+	}
+
+	/* toggle hover */
+	input.radio:hover:not(:checked) ~ label:before {
+		content:'\2714';
+		text-indent: .9em;
+		color: #C2C2C2;
+	}
+
+	input.radio:hover:not(:checked) ~ label {
+		color: #888;
+	}
+
+	/* toggle on */
+	input.radio:checked ~ label:before {
+		content:'\2714';
+		text-indent: .9em;
+		color: #9CE2AE;
+		background-color: #4DCB6D;
+	}
+
+	input.radio:checked ~ label {
+		color: #777;
+	}
+
+	/* radio focus */
+	input.radio:focus ~ label:before {
+		box-shadow: 0 0 0 3px #999;
+	}
+	#rc {
+		background-color: #f00;
+	}
+	#h1 {
+		font-size: 14pt;
+	}
+	#btn {
+			margin-top: 5px;
+			width: 400px;
+			height: 50px;
+			font-size: 20pt;
+		}
+	</style>
 	<div>
 		<div>
 			<img src="https://raw.githubusercontent.com/data-skeptic/openhouseproject.co/gh-pages/logo.png" width="75" />
@@ -7,14 +104,33 @@
 		<div>
 			<h1>The page below...</h1>
 			<form>
-				<input type="radio" name="result" value="50" />has one complete property listing<br/>
-				<input type="radio" name="result" value="51" />has many complete property listings<br/>
-				<input type="radio" name="result" value="52" />has no useful information on home sales<br/>
-				<input type="radio" name="result" value="53" />does not have any sales data but is from a page that should be crawled further<br/>
+				<div class="rc">
+					<input class="radio" type="radio" name="radio" value="50" id="radio50" />
+					<label for="radio50">has one complete property listing.</label>
+				</div>
+				<div class="rc">
+					<input class="radio" type="radio" name="radio" value="51" id="radio51" />
+					<label for="radio51">has many complete property listings.</label>
+				</div>
+				<div class="rc">
+					<input class="radio" type="radio" name="radio" value="52" id="radio52" />
+					<label for="radio52">has no useful information on home sales.</label>
+				</div>
+				<div class="rc">
+					<input class="radio" type="radio" name="radio" value="53" id="radio53" />
+					<label for="radio53">does not have any sales data but is from a page that should be crawled further.</label>
+				</div>
+				<div class="rc">
+					<input class="radio" type="radio" name="radio" value="54" id="radio54" />
+					<label for="radio54">contains an error.</label>
+				</div>
+				<div>
+					<button id="btn">Submit</button>
+				</div>
 			</form>
 		</div>
 		<div>
-			<iframe width=100% height=300 src="http://openhouseproject.co/loading.htm" />
+			<iframe width=100% height=300 src="http://openhouseproject.co/loading.html" />
 		</div>
 	</div>
 </body>
