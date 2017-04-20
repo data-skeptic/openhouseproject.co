@@ -1,12 +1,13 @@
 <html>
+<head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
 <body>
 	<style type="text/css">
 	body {
 		font-family: sans-serif;
 		font-weight: normal;
-		margin: 10px;
 		color: #999;
-		background-color: #eee;
 	}
 
 	form {
@@ -20,8 +21,7 @@
 	}
 
 	label {
-	  width: 700px;
-	  height: 40px;
+	  width: 650px;
 	  border-radius: 3px;
 	  border: 1px solid #D1D3D4
 	}
@@ -37,7 +37,7 @@
 		float: left;
 		line-height: 2.5em;
 		text-indent: 3.25em;
-		margin-top: 2em;
+		margin-top: 2px;
 		cursor: pointer;
 		-webkit-user-select: none;
 		-moz-user-select: none;
@@ -85,25 +85,102 @@
 		box-shadow: 0 0 0 3px #999;
 	}
 	#rc {
-		background-color: #f00;
 	}
 	#h1 {
 		font-size: 14pt;
 	}
 	#btn {
 			margin-top: 5px;
-			width: 400px;
+			width: 650px;
 			height: 50px;
 			font-size: 20pt;
 		}
 	</style>
+	<script>
+	var rurl = "n/a"
+
+	function doerror() {
+		alert("Oh no, we had an error. :(  Check the javascript console.  Please mention this in the #OpenHouse channel on Data Skeptic Slack")
+	}
+
+	function go() {
+		var btn = $("#btn")
+		btn = btn[0]
+		btn.disabled = true
+		btn.innerText = "Updating..."
+
+		var selected = $("input[name='radio']:checked").val();
+		if (selected == undefined) {
+			alert("Please select a description from above.")
+			return
+		}
+		var url = "https://5xwvsgjnqi.execute-api.us-east-1.amazonaws.com/prod/crawl-review"
+		var s = JSON.stringify({"url": rurl, "status-mask": parseInt(selected)})
+		console.log(s)
+		$.ajax({
+			url: url,
+			type: "POST",
+			data: s,
+			success: function(data, textStatus, jqXHR) {
+				var resp = data
+				var status = resp['status']
+				if (status=="done") {
+					$('.radio').prop('checked', false);
+					load_next()
+				}
+				else {
+					doerror()
+				}
+			},
+			error: function (jqXHR, textStatus, errorThrown) {
+				doerror()
+				console.log(textStatus)
+				console.log(errorThrown)
+			}
+		})
+		console.log("done")
+	}
+
+	function load_next() {
+		var btn = $("#btn")
+		btn = btn[0]
+		btn.disabled = true
+		btn.innerText = "Loading..."
+		var url = "https://5xwvsgjnqi.execute-api.us-east-1.amazonaws.com/prod/crawl-review"
+		console.log(1)
+		$.get(url, function(data) {
+			var d = data['content']
+			rurl = data['url']
+			if (d == undefined) {
+				console.log(data)
+				doerror()
+			}
+			else {
+				var content = d
+				var iframe = document.getElementById('frame')
+				iframe.src = 'data:text/html;charset=utf-8,' + encodeURI(content);
+				if (rurl == "done") {
+					btn.innerText = "Done for now.  Help find more sources!"
+					btn.disabled = true
+				} else {
+					btn.disabled = false
+					btn.innerText = "Submit"
+				}
+			}
+		})
+	}
+
+	$(document).ready(function() {
+		load_next()
+	});
+
+	</script>
 	<div>
 		<div>
 			<img src="https://raw.githubusercontent.com/data-skeptic/openhouseproject.co/gh-pages/logo.png" width="75" />
 		</div>
 		<div>
 			<h1>The page below...</h1>
-			<form>
 				<div class="rc">
 					<input class="radio" type="radio" name="radio" value="50" id="radio50" />
 					<label for="radio50">has one complete property listing.</label>
@@ -125,12 +202,11 @@
 					<label for="radio54">contains an error.</label>
 				</div>
 				<div>
-					<button id="btn">Submit</button>
+					<button onClick="go()" id="btn">Submit</button>
 				</div>
-			</form>
 		</div>
 		<div>
-			<iframe width=100% height=300 src="http://openhouseproject.co/loading.html" />
+			<iframe id="frame" width=100% height=400 src="http://openhouseproject.co/loading.html" />
 		</div>
 	</div>
 </body>
