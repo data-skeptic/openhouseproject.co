@@ -1,0 +1,182 @@
+<html>
+<head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+	<style type="text/css">
+	body {
+		font-family: sans-serif;
+		font-weight: normal;
+		color: #999;
+	}
+	#h1 {
+		font-size: 14pt;
+	}
+	#refresh {
+		margin-top: 5px;
+		width: 300px;
+		height: 90px;
+		font-size: 20pt;
+	}
+	#btn {
+		margin-top: 5px;
+		width: 650px;
+		height: 50px;
+		font-size: 20pt;
+		}
+	#right {
+	}
+	#contact {
+		width: 100%;
+		padding: 1px;
+		font-size:12pt;
+	}
+	#code {
+		width: 100%;
+		height: 250px;
+		font-family: monospace;
+	}
+	</style>
+	<script>
+	var rurl = "n/a"
+
+	function doerror() {
+		alert("Oh no, we had an error. :(  Check the javascript console.  Please mention this in the #OpenHouse channel on Data Skeptic Slack")
+	}
+
+	function go() {
+		var btn = $("#btn")
+		btn = btn[0]
+		btn.disabled = true
+		var contact = $("#contact").val()
+		if (contact == "") {
+			alert("Please enter your contact information in the top box.  Or type 'anonymous' if you don't want us to get in touch.")
+			btn.disabled = false
+			return
+		}
+		var code = $("#code").val()
+		var code = {
+			"contact": contact,
+			"code": code,
+			"url": rurl
+		}
+		var url = "https://5xwvsgjnqi.execute-api.us-east-1.amazonaws.com/prod/parse-submit"
+		$.ajax({
+			url: url,
+			type: "POST",
+			data: JSON.stringify(code),
+			success: function(data, textStatus, jqXHR) {
+				console.log(data)
+				var msg = data["msg"]
+				if (msg == "ok") {
+					load_next()
+					alert("Thank you!")
+				} else {
+					doerror()
+				}
+				btn.disabled = false
+			},
+			error: function (jqXHR, textStatus, errorThrown) {
+				doerror()
+				console.log(textStatus)
+				console.log(errorThrown)
+				btn.disabled = false
+			}
+		})
+	}
+
+	function load_next() {
+		var btn = $("#btn")
+		btn = btn[0]
+		btn.innerText = "Loading..."
+		btn.disabled = true
+		var url = "https://5xwvsgjnqi.execute-api.us-east-1.amazonaws.com/prod/parse-page"
+		$.get(url, function(data) {
+			var content = data['content']
+			var t = typeof(content)
+			if (t == "string") {
+				// This is a slight workaround because empty.htm is not the right format
+				if (content.substring(0, 1) == "{") {
+					content = JSON.parse(content)['content']
+				}
+			}
+			rurl = data['url']
+			if (content == undefined) {
+				console.log(data)
+				doerror()
+			}
+			else {
+				var iframe = document.getElementById('frame')
+				iframe.src = 'data:text/html;charset=utf-8,' + encodeURI(content);
+				if (rurl == "done") {
+					btn.innerText = "Done for now.  Help find more sources!"
+					btn.disabled = true
+				} else {
+					var code = $("#code")
+					var s = "import requests \n\
+import BeautifulSoup \n\
+\n\
+src = '{rurl}' \n\
+r = requests.get(src) \n\
+content = r.content \n\
+soup = bsoup.BeautifulSoup(content) \n\
+\n\
+result = { \n\
+	\"beds\": ? \n\
+} \n\
+"
+					var s = s.replace('{rurl}', rurl)
+					code.val(s)
+					console.log(code)
+					btn.disabled = false
+					btn.innerText = "Submit your code"
+				}
+			}
+		})
+	}
+
+	$(document).ready(function() {
+		load_next()
+		$("#refresh").click(function(e) {
+			console.log("refresh")
+			load_next()
+		})
+	});
+
+	</script>
+	<div>
+		<div>
+			<img src="https://raw.githubusercontent.com/data-skeptic/openhouseproject.co/gh-pages/logo.png" width="75" />
+		</div>
+		<div class="row" id="top">
+			<div class="col-xs-12 col-sm-4">
+				<h1>Help us parse the page below</h1>
+				<p>Take the starter Python code seen below.  Use BeautifulSoup (or any other library of your choice) and parse out the relevant fields.  When your code is ready put it in the submit box on this page and send it to us!</p>
+				<p>If you have any questions or issues, please check in with us in the #OpenHouse channel of the Data Skeptic slack group.  We'll probably make this process easier in time, but for now, drop your code into the box below and hit submit.  We'll take it from there!</p>
+				<center><button id="refresh">Skip this parse and try a different one</button></center>
+			</div>
+			<div class="col-xs-12 col-sm-8" id="right">
+				<div class="row">
+					<div class="col-xs-12 col-sm-1">Your contact info:</div>
+					<div class="col-xs-12 col-sm-10"><input id="contact" name="contact" /></div>
+				</div>
+				<div class="row">
+					<div class="col-xs-1"><pre>&gt;&gt;&gt;</pre></div>
+					<div class="col-xs-11"><textarea id="code">
+# Loading...
+					</textarea></div>
+				</div>
+				<div class="row">
+					<div class="col-xs-1"></div>
+					<div class="col-xs-11"><button onClick="go()" id="btn">Submit</button></div>
+				</div>
+			</div>
+		</div>
+		<div>
+			<iframe id="frame" width=100% height=400 src="http://openhouseproject.co/loading.html" />
+		</div>
+	</div>
+</body>
+</html>
