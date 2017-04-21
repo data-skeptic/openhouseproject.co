@@ -116,16 +116,15 @@
 				} else {
 					var code = $("#code")
 					var s = "import requests \n\
-import BeautifulSoup \n\
+import BeautifulSoup as soup \n\
 \n\
 src = '{rurl}' \n\
 r = requests.get(src) \n\
 content = r.content \n\
-soup = bsoup.BeautifulSoup(content) \n\
+bs = bsoup.BeautifulSoup(content) \n\
 \n\
-result = { \n\
-	\"beds\": ? \n\
-} \n\
+# populate the values in the data structure below \n\
+result = {'raw_address': '', 'bedrooms': -1, 'bathrooms': -1, 'size_units': 'I', 'building_size': -1, 'price': -1, 'car_spaces': -1, 'listing_type': 'F', 'features': []} \n\
 "
 					var s = s.replace('{rurl}', rurl)
 					code.val(s)
