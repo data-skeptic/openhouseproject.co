@@ -6,20 +6,11 @@ permalink: /contributing/
 
 ### Contributing
 
-If you'd like to participate, please email kyle@dataskeptic.com and ask to join our Slack channel.
+The first step is to drop by our Slack channel and introduce yourself! You can sign up at [https://dataskeptic.com/contact-us](https://dataskeptic.com/contact-us).  Tell us about who you are and what your interest in the project is.  If you'd like to develop a new skill, we're happy to help provide some training.
 
-**Join us for a live chat discussion of the project every Tuesday at 6:30pm PST in the Data Skeptic Slack channel.**
+Open technical low(ish) hanging fruit can be found [here](https://waffle.io/data-skeptic/home-data-gallery)
 
-The first step is to drop by our Slack channel and introduce yourself! Tell us about who you are and what your interest in the project is. 
-
-Open tasks you can volunteer for can be found on our waffle.io boards for the 
-<a href="https://waffle.io/data-skeptic/home-data-api">API</a> and the
-<a href="https://waffle.io/data-skeptic/home-data-gallery">Interactive tool</a>.
-If you're not looking to contribute technical skills but still want to help out,
-check out our list of 
-<a href="https://trello.com/b/QPhASWc9/openhouse-non-technical-tasks">non-technical volunteer tasks</a>.
-
-
+Our tasks related to product management, graphic design, and engineering leadership can be found [here](https://trello.com/b/KsxRcumo/openhouse-roadmap-choices).
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 <script>
@@ -98,10 +89,10 @@ $( document ).ready(function() {
 }
 </style>
 
-
+Looking to make a one-time contribution.  Consider helping in one of the three ways below.
 
 <div id="urlbox">
- <h3>Tell us about a website</h3>
+ <h3>1) Tell us about a website</h3>
 
   <table>
     <tr>
@@ -130,6 +121,7 @@ $( document ).ready(function() {
 
 </div>
 
+2) Help us review pages that we've crawled to validate if they should be parsed or not by using our web interface found [here](http://openhouseproject.co/review-crawls.html).
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/cHoRn1UxEzk" frameborder="0" allowfullscreen></iframe>
+3) Help us develop parsing code.  Get started in 2 minutes using our web interface found [here](http://openhouseproject.co/create-parse.html).
 
