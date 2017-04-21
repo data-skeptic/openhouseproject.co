@@ -156,6 +156,14 @@
 				doerror()
 			}
 			else {
+				console.log(typeof(d))
+				try {
+					var o = JSON.parse(d)
+					d = o['content']
+				}
+				catch (e) {
+
+				}
 				var content = d
 				var iframe = document.getElementById('frame')
 				iframe.src = 'data:text/html;charset=utf-8,' + encodeURI(content);
