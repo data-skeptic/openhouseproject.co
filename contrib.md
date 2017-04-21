@@ -121,7 +121,9 @@ Looking to make a one-time contribution.  Consider helping in one of the three w
 
 </div>
 
-2) Help us review pages that we've crawled to validate if they should be parsed or not by using our web interface found [here](http://openhouseproject.co/review-crawls.html).
+<h3>2) Validate pages that we've crawled</h3>
+Help us review pages that we've crawled to validate if they should be parsed or not by using our web interface found [here](http://openhouseproject.co/review-crawls.html).
 
-3) Help us develop parsing code.  Get started in 2 minutes using our web interface found [here](http://openhouseproject.co/create-parse.html).
+<h3>3) Write parsing code for a page</h3>
+Help us develop parsing code.  Get started in 2 minutes using our web interface found [here](http://openhouseproject.co/create-parse.html).
 
